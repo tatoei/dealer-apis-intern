@@ -1,14 +1,10 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { AuthService } from './auth/auth.service';
-import { AuthModule } from './auth/auth.module';
-import { UserController } from './user/user.controller';
-import { UserModule } from './user/user.module';
+import { AuthController } from './auth/auth.controller';
 
 @Module({
-  imports: [AuthModule, UserModule],
-  controllers: [AppController, UserController],
-  providers: [AppService, AuthService],
+  providers: [AuthService, AuthModule],
+  controllers: [AuthController],
+  exports: [AuthService], // หากต้องการให้โมดูลอื่นใช้งาน AuthService
 })
-export class AppModule {}
+export class AuthModule {}
