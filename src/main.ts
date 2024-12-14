@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AuthModule);
