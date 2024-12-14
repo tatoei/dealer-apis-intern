@@ -1,9 +1,9 @@
 import { NestFactory } from '@nestjs/core';
-
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { AuthModule } from './auth/auth.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(module);
+  const app = await NestFactory.create(AuthModule);
 
   // เปิด Swagger UI
   const config = new DocumentBuilder()
