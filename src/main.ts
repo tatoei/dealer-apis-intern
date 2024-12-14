@@ -1,14 +1,20 @@
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = new DocumentBuilder().setVersion('1.0').build();
-  const documentFactory = () => SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, documentFactory);
+  // ตั้งค่า Swagger
+  const config = new DocumentBuilder()
+    .setTitle('API Documentation')
+    .setDescription('API description for my project')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('api', app, document); // http://localhost:3000/api
 
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(3000, '0.0.0.0');
 }
 bootstrap();
