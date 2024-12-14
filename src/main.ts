@@ -5,16 +5,15 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // ตั้งค่า Swagger
+  // เปิด Swagger UI
   const config = new DocumentBuilder()
     .setTitle('API Documentation')
-    .setDescription('API description for my project')
+    .setDescription('The API description')
     .setVersion('1.0')
-    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document); // http://localhost:3000/api
+  SwaggerModule.setup('api', app, document); // URL Swagger: /api
 
-  await app.listen(3000, '0.0.0.0');
+  await app.listen(3000);
 }
 bootstrap();
